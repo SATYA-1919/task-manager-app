@@ -22,23 +22,39 @@ class MyApp extends StatelessWidget {
       title: 'Task Manager',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF6C63FF),
-          primary: const Color(0xFF6C63FF),
-          secondary: const Color(0xFF03DAC6),
+        colorScheme: const ColorScheme.light(
+          primary: Color(0xFF191816),
+          secondary: Color(0xFF191816),
+          surface: Color(0xFFFFFFFF),
+          onPrimary: Colors.white,
+          onSurface: Color(0xFF191816),
+          onSurfaceVariant: Color(0xFF6D6963),
+          outline: Color(0xFFE4DED4),
+          outlineVariant: Color(0xFFE4DED4),
+          surfaceContainerHighest: Color(0xFFF2EFE9),
         ),
-        textTheme: GoogleFonts.poppinsTextTheme(),
+        scaffoldBackgroundColor: const Color(0xFFF8F6F2),
+        textTheme: GoogleFonts.poppinsTextTheme().apply(
+          bodyColor: const Color(0xFF191816),
+          displayColor: const Color(0xFF191816),
+        ),
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFFF8F6F2),
+          foregroundColor: Color(0xFF191816),
+          surfaceTintColor: Colors.transparent,
+          elevation: 0,
+        ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Colors.grey.shade100,
+          fillColor: const Color(0xFFF2EFE9),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide.none,
+            borderSide: const BorderSide(color: Color(0xFFE4DED4)),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Color(0xFF6C63FF), width: 2),
+            borderSide: const BorderSide(color: Color(0xFF191816), width: 1.4),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
@@ -51,7 +67,7 @@ class MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF6C63FF),
+            backgroundColor: const Color(0xFF191816),
             foregroundColor: Colors.white,
             minimumSize: const Size(double.infinity, 52),
             shape: RoundedRectangleBorder(
@@ -62,6 +78,10 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFF191816),
+          foregroundColor: Colors.white,
         ),
       ),
       home: const AuthWrapper(),

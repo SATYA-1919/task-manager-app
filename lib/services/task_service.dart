@@ -11,14 +11,18 @@ class TaskService {
   CollectionReference get _tasksCollection => _firestore.collection('tasks');
 
   Stream<List<TaskModel>> getTasksStream() {
-    return _tasksCollection
-        .where('userId', isEqualTo: _userId)
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map(
-          (snapshot) =>
-              snapshot.docs.map((doc) => TaskModel.fromFirestore(doc)).toList(),
-        );
+    return _tasksCollection.where('userId', isEqualTo: _userId).snapshots().map(
+      (snapshot) {
+        final tasks = snapshot.docs
+            .map((doc) => TaskModel.fromFirestore(doc))
+            .toList();
+
+        // Sort locally so this query does not require a Firestore composite
+        // index for userId + createdAt.
+        tasks.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+        return tasks;
+      },
+    );
   }
 
   Future<void> addTask(TaskModel task) async {

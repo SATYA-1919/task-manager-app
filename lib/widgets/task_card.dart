@@ -18,23 +18,16 @@ class TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        color: colors.surface,
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: task.isCompleted
-              ? const Color(0xFF4CAF50).withValues(alpha: 0.4)
-              : Colors.transparent,
-          width: 1.5,
+          color: task.isCompleted ? colors.primary : colors.outlineVariant,
+          width: task.isCompleted ? 1.2 : 1,
         ),
       ),
       child: Padding(
@@ -51,13 +44,11 @@ class TaskCard extends StatelessWidget {
                 height: 26,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: task.isCompleted
-                      ? const Color(0xFF4CAF50)
-                      : Colors.transparent,
+                  color: task.isCompleted ? colors.primary : Colors.transparent,
                   border: Border.all(
                     color: task.isCompleted
-                        ? const Color(0xFF4CAF50)
-                        : Colors.grey.shade400,
+                        ? colors.primary
+                        : const Color(0xFFB8B1A7),
                     width: 2,
                   ),
                 ),
@@ -82,8 +73,8 @@ class TaskCard extends StatelessWidget {
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
                       color: task.isCompleted
-                          ? Colors.grey.shade500
-                          : Colors.black87,
+                          ? colors.onSurfaceVariant
+                          : colors.onSurface,
                     ),
                   ),
                   if (task.description.isNotEmpty) ...[
@@ -94,7 +85,7 @@ class TaskCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 13,
-                        color: Colors.grey.shade600,
+                        color: colors.onSurfaceVariant,
                         decoration: task.isCompleted
                             ? TextDecoration.lineThrough
                             : TextDecoration.none,
@@ -107,14 +98,14 @@ class TaskCard extends StatelessWidget {
                       Icon(
                         Icons.calendar_today_outlined,
                         size: 13,
-                        color: Colors.grey.shade500,
+                        color: colors.onSurfaceVariant,
                       ),
                       const SizedBox(width: 4),
                       Text(
                         DateFormat('MMM dd, yyyy').format(task.date),
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.grey.shade500,
+                          color: colors.onSurfaceVariant,
                         ),
                       ),
                       const SizedBox(width: 10),
@@ -125,8 +116,8 @@ class TaskCard extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: task.isCompleted
-                              ? const Color(0xFF4CAF50).withValues(alpha: 0.1)
-                              : const Color(0xFF6C63FF).withValues(alpha: 0.1),
+                              ? colors.primary
+                              : colors.surfaceContainerHighest,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
@@ -135,8 +126,8 @@ class TaskCard extends StatelessWidget {
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                             color: task.isCompleted
-                                ? const Color(0xFF4CAF50)
-                                : const Color(0xFF6C63FF),
+                                ? Colors.white
+                                : colors.onSurfaceVariant,
                           ),
                         ),
                       ),
@@ -153,7 +144,7 @@ class TaskCard extends StatelessWidget {
                   onPressed: onEdit,
                   icon: const Icon(
                     Icons.edit_outlined,
-                    color: Color(0xFF6C63FF),
+                    color: Color(0xFF191816),
                     size: 20,
                   ),
                   padding: EdgeInsets.zero,
@@ -166,7 +157,7 @@ class TaskCard extends StatelessWidget {
                   onPressed: onDelete,
                   icon: Icon(
                     Icons.delete_outline,
-                    color: Colors.red.shade400,
+                    color: Colors.grey.shade700,
                     size: 20,
                   ),
                   padding: EdgeInsets.zero,

@@ -55,8 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -73,13 +74,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 80,
                     height: 80,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF6C63FF).withValues(alpha: 0.12),
+                      color: colors.surfaceContainerHighest,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.task_alt,
                       size: 40,
-                      color: Color(0xFF6C63FF),
+                      color: colors.primary,
                     ),
                   ),
                 ),
@@ -166,10 +167,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         context,
                         MaterialPageRoute(builder: (_) => const SignupScreen()),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Sign Up',
                         style: TextStyle(
-                          color: Color(0xFF6C63FF),
+                          color: colors.primary,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

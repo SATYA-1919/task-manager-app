@@ -57,13 +57,12 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
+          icon: Icon(Icons.arrow_back_ios, color: colors.primary),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -170,10 +169,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
-                      child: const Text(
+                      child: Text(
                         'Sign In',
                         style: TextStyle(
-                          color: Color(0xFF6C63FF),
+                          color: colors.primary,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

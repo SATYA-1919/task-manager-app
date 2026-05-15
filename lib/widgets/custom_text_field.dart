@@ -31,6 +31,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.isPassword && _obscureText,
@@ -40,7 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         labelText: widget.label,
         hintText: widget.hint,
-        prefixIcon: Icon(widget.prefixIcon, color: const Color(0xFF6C63FF)),
+        prefixIcon: Icon(widget.prefixIcon, color: colors.primary),
         suffixIcon: widget.isPassword
             ? IconButton(
                 icon: Icon(

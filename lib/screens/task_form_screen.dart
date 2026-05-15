@@ -50,7 +50,9 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(primary: Color(0xFF6C63FF)),
+            colorScheme: ColorScheme.light(
+              primary: Theme.of(context).colorScheme.primary,
+            ),
           ),
           child: child!,
         );
@@ -122,17 +124,12 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black87,
-            size: 20,
-          ),
+          icon: Icon(Icons.arrow_back_ios, color: colors.primary, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
@@ -214,15 +211,15 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                     vertical: 16,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
+                    color: colors.surfaceContainerHighest,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.transparent),
+                    border: Border.all(color: colors.outlineVariant),
                   ),
                   child: Row(
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.calendar_today_outlined,
-                        color: Color(0xFF6C63FF),
+                        color: colors.primary,
                         size: 20,
                       ),
                       const SizedBox(width: 12),

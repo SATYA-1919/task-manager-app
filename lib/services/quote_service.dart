@@ -3,21 +3,19 @@ import 'package:http/http.dart' as http;
 import '../models/quote_model.dart';
 
 class QuoteService {
-  static const String _baseUrl = 'https://api.quotable.io/random';
+  // Swapped to a more reliable API
+  static const String _url = 'https://dummyjson.com/quotes/random';
 
-  Future<QuoteModel?> fetchRandomQuote() async {
+  Future<QuoteModel> fetchQuote() async {
     try {
-      final response = await http
-          .get(Uri.parse(_baseUrl))
-          .timeout(const Duration(seconds: 10));
-
+      final response = await http.get(Uri.parse(_url));
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        return QuoteModel.fromJson(data);
+        return QuoteModel.fromJson(json.decode(response.body));
+      } else {
+        throw Exception('Failed to load quote');
       }
-      return null;
     } catch (e) {
-      return null;
+      return QuoteModel(content: "Keep pushing forward!", author: "System");
     }
   }
 }

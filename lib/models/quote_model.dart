@@ -6,7 +6,8 @@ class QuoteModel {
 
   factory QuoteModel.fromJson(Map<String, dynamic> json) {
     return QuoteModel(
-      content: json['content'] ?? '',
+      // We check for 'quote' (DummyJSON) or 'content' (Quotable) just to be safe
+      content: json['quote'] ?? json['content'] ?? 'No quote found',
       author: json['author'] ?? 'Unknown',
     );
   }
